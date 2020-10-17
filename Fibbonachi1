@@ -1,0 +1,24 @@
+#include <stdio.h>
+long get_fibbonachi_via_cycle(int);
+
+int main() 
+{
+  int number;
+  scanf("%d", &number);
+  printf("%ld", get_fibbonachi_via_cycle(number));
+ 
+  return 0;
+}
+
+long get_fibbonachi_via_cycle(int number)
+{
+  long previous_number = 1;
+  long result = 1;
+  for (int i = 0; i < number - 2; i++)
+  {
+    result += previous_number;
+    previous_number = result - previous_number;
+  }
+
+  return result;
+}
