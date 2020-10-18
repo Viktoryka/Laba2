@@ -40,12 +40,21 @@ void power(int number, int source, int target)
   int result_in_ten = 0;
   int line_lengt = sizeof(number) / sizeof(int);
   char result[30];
+  for (int q = 0; q < 30; q++)  
+  {
+    result[q] = 0;
+  }
+  
   while (number > 0)
   {
     static int power = 1;
     result_in_ten += number % 10 * power;
     power  *= source;
     number /= 10;
+    if (number <= 0) 
+    {
+      power = 1;
+    }
   }
   
   while (result_in_ten > 0) 
@@ -53,6 +62,10 @@ void power(int number, int source, int target)
     static int q = 0;
     result[q++] = int_to_char(result_in_ten % target);
     result_in_ten /= target;
+    if (result_in_ten <= 0) 
+    {
+      q = 0;
+    }
   }
   int length = strlen(result);
   for (int q = 0; q < length / 2; q++)
